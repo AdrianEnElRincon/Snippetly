@@ -15,5 +15,9 @@ return [
 
     'login' => 'Iniciar sesión',
     'register' => 'Registrarse',
-    
+    'logout' => 'Salir',
+    'failed' => 'Estos credenciales no se encuentran en nuestros registros.',
+    'password' => 'La contraseña introducida es incorrecta.',
+    'throttle' => 'Demasiados intentos de inicio de sesión. Por favor intentelo de nuevo en :seconds segundos.',
+
 ];

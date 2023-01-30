@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing-page');
-});
+    return view('home');
+})->name('home');
+
+Auth::routes();
+
+Route::get('set-locale/{locale}', function ($locale) {
+    App::setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->middleware('check.locale')->name('locale.setting');

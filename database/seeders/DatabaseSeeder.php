@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Snippet;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +22,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        if (app()->environment() === 'local') {
+            $this->call([
+                RoleSeeder::class,
+                UserSeeder::class,
+                LanguageSeeder::class,
+                SnippetSeeder::class,
+            ]);
+        }
+
+        
+
     }
 }
