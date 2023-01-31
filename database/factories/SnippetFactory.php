@@ -24,7 +24,8 @@ class SnippetFactory extends Factory
             'lang_id' => langs()->id('html'),
             'views' => fake()->numberBetween(0, 10_000),
             'likes' => fake()->numberBetween(0, 5_000),
-            'dislikes' => fake()->numberBetween(0, 5_000)
+            'dislikes' => fake()->numberBetween(0, 5_000),
+            'public' => true,
         ];
     }
 }

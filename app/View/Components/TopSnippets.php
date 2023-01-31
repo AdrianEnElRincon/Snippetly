@@ -22,7 +22,7 @@ class TopSnippets extends Component
      */
     public function __construct()
     {
-        $this->snippets = Snippet::orderBy('views', 'DESC')->limit(50)->get();
+        $this->snippets = Snippet::orderBy('views', 'DESC')->limit(10)->get();
     }
 
     /**

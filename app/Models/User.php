@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'public',
+        'preferences',
     ];
 
     /**
@@ -41,6 +43,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'public' => 'boolean',
+        'preferences' => 'array'
     ];
 
     public function snippets()

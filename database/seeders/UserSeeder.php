@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Administrador',
             'email' => 'admin@snippely.com',
-            'role_id' => roles()->id('admin')
+            'role_id' => roles()->id('admin'),
+            'public' => false
         ]);
 
         User::factory(100)->create();

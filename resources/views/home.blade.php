@@ -1,28 +1,32 @@
 @extends('layouts.app')
 
+
 @section('title', __('app.title'))
 
-@section('scripts')
-    <script type="module" src="{{ Vite::asset('resources/scripts/home.js') }}"></script>
-@endsection
 
-@section('loader')
-    <x-loader />
-@endsection
+@push('styles')
+    @livewireStyles
+
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
+@endpush
+
+
+@push('scripts')
+    @livewireScripts
+
+    <script type="module" src="{{ Vite::asset('resources/js/home.js') }}"></script>
+@endpush
 
 @section('content')
 
-    @env('local')
-        <x-bootstrap-breakpoints />
-    @endenv
+    <x-loader />
 
-    <div class="container mt-3">
-        <x-top-snippets />
-    </div>
+    <x-navbar />
+    
+    <livewire:search-bar />
 
-    <div id="jump-to-top">
-        <a href="#top" class="btn btn-primary">
-            <span class="bi bi-chevron-up"></span>
-        </a>
-    </div>
+    <x-top-snippets />
+
+    <x-jump-to-top />
+
 @endsection

@@ -1,5 +1,5 @@
 import './bootstrap';
 
-import.meta.glob([
-    '../scripts/**'
-]);
+import.meta.glob([]);
+
+import './loader'

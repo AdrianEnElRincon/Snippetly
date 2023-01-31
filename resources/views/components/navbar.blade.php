@@ -5,23 +5,16 @@
         </a>
         <div class="d-flex">
             <x-lang-switch class="me-2" />
-            <form class="me-2" action="">
-                <div class="input-group">
-                    <input class="form-control text-white" type="text" name="searchtext"
-                        autocomplete="off" placeholder="{{ __('snippets.search') }}">
-                    <input class="btn btn-outline-secondary" type="submit"
-                        value="{{ __('ui.search') }}">
-                </div>
-            </form>
+
             @auth
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <input class="btn btn-danger me-0" type="submit" value="{{ __('auth.logout') }}">
+                    <input class="btn btn-danger me-0" type="submit" value="{{ __('ui.logout') }}">
                 </form>
             @else
-                <a class="btn btn-success me-2" href="{{ route('login') }}">{{ __('auth.login') }}</a>
+                <a class="btn btn-success me-2" href="{{ route('login') }}">{{ __('ui.login') }}</a>
                 <a class="btn btn-secondary"
-                    href="{{ route('register') }}">{{ __('auth.register') }}</a>
+                    href="{{ route('register') }}">{{ __('ui.register') }}</a>
             @endauth
         </div>
     </div>

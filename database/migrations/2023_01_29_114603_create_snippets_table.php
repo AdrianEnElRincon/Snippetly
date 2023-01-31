@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('dislikes')->default(0);
             $table->unsignedBigInteger('views');
+            $table->boolean('public');
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
         });

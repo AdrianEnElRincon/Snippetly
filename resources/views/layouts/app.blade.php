@@ -7,17 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', config('app.name'))</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
-    @yield('scripts')
+    @stack('styles')
 </head>
 
 <body>
-    @yield('loader')
-
-    @section('navigation')
-        <x-navbar />
-    @show
-
+    @include('components.loader')
+    @include('components.navbar')
     @yield('content')
+    @stack('scripts')
+    <script src="{{ Vite::asset('resources/js/loader.js') }}"></script>
 </body>
 
 </html>
