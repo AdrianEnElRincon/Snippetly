@@ -19,6 +19,8 @@ class CommentFactory extends Factory
     {
 
         return [
+            'likes' => fake()->numberBetween(0, 100),
+            'dislikes' => fake()->numberBetween(0, 100),
             'content' => fake()->text()
         ];
     }

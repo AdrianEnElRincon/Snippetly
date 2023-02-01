@@ -17,11 +17,11 @@ class Comment extends Model
 
     public function snippet()
     {
-        return $this->hasOne(Snippet::class);
+        return $this->belongsTo(Snippet::class);
     }
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

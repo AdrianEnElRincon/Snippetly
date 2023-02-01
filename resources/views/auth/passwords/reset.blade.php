@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('content')
     <div class="container">
@@ -15,7 +15,7 @@
 
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end"
-                                    for="email">{{ __('Email Address') }}</label>
+                                    for="email">{{ __('ui.email') }}</label>
 
                                 <div class="col-md-6">
                                     <input class="form-control @error('email') is-invalid @enderror"

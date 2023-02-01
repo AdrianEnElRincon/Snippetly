@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -36,7 +37,17 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $data = $request->safe()->only(['content', 'snippet_id']);
+
+        Comment::factory()->create([
+            'content' => $data['content'],
+            'snippet_id' => $data['snippet_id'],
+            'user_id' => Auth::user()->id,
+            'likes' => 0,
+            'dislikes' => 0,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

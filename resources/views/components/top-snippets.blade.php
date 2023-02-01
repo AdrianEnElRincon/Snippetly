@@ -1,6 +1,6 @@
 @push('styles')
     @auth
-        <link rel="stylesheet" href="{{ hljs()->asset(auth()->user()->preferences->style) }}">
+        <link rel="stylesheet" href="{{ hljs()->asset(prefs()->style) }}">
     @else
         <link rel="stylesheet" href="{{ hljs()->asset('atom-one-dark') }}">
     @endauth

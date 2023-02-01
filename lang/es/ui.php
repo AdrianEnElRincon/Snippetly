@@ -14,13 +14,19 @@ return [
     'search' => 'Buscar',
     'searchbar' => 'Buscar snippets, comunidades, usuarios ...',
     'views' => 'visualizaciones',
-    'likes' => 'me gusta',
-    'dislikes' => 'me disgusta',
+    'likes' => 'Gusta',
+    'dislikes' => 'Disgusta',
     'profile' => [
         'show' => 'Perfil',
         'edit' => 'Editar perfil',
         'config' => 'Ajustes'
     ],
     'menu' => 'Panel de control',
-
+    'comments' => 'Comentarios',
+    'make-comment' => 'Hacer un comentario',
+    'save' => 'Guardar',
+    'popular' => 'Popularidad',
+    'user' => 'Usuario',
+    'controversial' => 'Polémico',
+    'recent' => 'Mas Reciente'
 ];

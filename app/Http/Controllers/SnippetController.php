@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Snippet;
 use App\Http\Requests\StoreSnippetRequest;
 use App\Http\Requests\UpdateSnippetRequest;
+use App\Models\Comment;
 
 class SnippetController extends Controller
 {
@@ -47,7 +48,21 @@ class SnippetController extends Controller
      */
     public function show(Snippet $snippet)
     {
-        return view('snippets.show', ['snippet' => $snippet]);
+        $comments = Comment::where('snippet_id', '=', $snippet->id)->get();
+
+
+
+        $data = [
+            'snippet' => $snippet,
+            'comments' => match(request()->sortBy) {
+                'popular' => $snippet->comments->sortByDesc('likes'),
+                'controversial' => $snippet->comments->sortByDesc('dislikes'),
+                'recent' => $snippet->comments->sortByDesc('created_at'),
+                default => $snippet->comments->sortByDesc('likes')
+            }
+        ];
+
+        return view('snippets.show', $data);
     }
 
     /**

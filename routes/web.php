@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnippetController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +25,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware('auth')->group(function () {
+    Route::resource('snippets', SnippetController::class);
+    Route::resource('communities', CommunityController::class);
+    Route::resource('profiles', ProfileController::class);
+    Route::resource('comments', CommentController::class)->only([
+        'store', 'update', 'destroy'
+    ]);
+});
+
 Route::get('set-locale/{locale}', function ($locale) {
     App::setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
 })->middleware('check.locale')->name('locale.setting');
 
-Route::middleware('auth')->group(function () {
-    Route::resource('snippets', SnippetController::class);
-});
+
 

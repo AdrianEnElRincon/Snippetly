@@ -10,17 +10,6 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <x-app-logo type="brand" />
-            </a>
-            <div class="d-flex">
-                <a class="btn btn-success me-2" href="#">{{ __('auth.login') }}</a>
-                <a class="btn btn-secondary" href="#">{{ __('auth.register') }}</a>
-            </div>
-        </div>
-    </nav>
     @yield('content')
 </body>
 

@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Nette\Utils\Json;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -18,6 +17,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $preferences = json_encode(['style' => 'atom-one-dark']);
+
+
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -26,7 +29,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'role_id' => roles()->id('user'),
             'public' => true,
-            'preferences' => Json::encode(['style' => 'atom-one-dark', 'lang' => 'es']),
+            'preferences' => ['style' => 'atom-one-dark'],
         ];
     }
 

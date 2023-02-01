@@ -20,7 +20,7 @@ class CommentSeeder extends Seeder
     {
         foreach(Snippet::all() as $snippet)
         {
-            for ($i = 0; $i < random_int(10, 20); $i++) {
+            for ($i = 0; $i < random_int(5, 10); $i++) {
                 Comment::factory()->create([
                     'snippet_id' => $snippet->id,
                     'user_id' => User::all()->random()->id

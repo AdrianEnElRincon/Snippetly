@@ -20,7 +20,7 @@ class SnippetFactory extends Factory
     {
         return [
             'title' => fake()->text('40'),
-            'description' => fake()->paragraph(),
+            'description' => fake()->paragraph(10),
             'content' => prettyHTML(fake()->randomHtml()),
             'lang_id' => langs()->id('html'),
             'views' => fake()->numberBetween(0, 10_000),

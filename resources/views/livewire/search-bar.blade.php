@@ -10,24 +10,30 @@
                 </div>
             </div>
             <div class="row">
-                <ul class="position-absolute w-100 col bg-body rounded mt-1 list-unstyled vstack gap-3"
+                <ul class="position-absolute w-100 col bg-body rounded mt-1 list-unstyled vstack gap-1 overflow-y-scroll"
                     id="search-bar-results" style="z-index: 2">
                     @foreach ($snippets as $snippet)
-                        <li class="p-2">
-                            <a href="">
-                                <span class="text-white-50 px-1">s/</span><span>{{ $snippet->title }}</span>
-                            </a>
+                        <li class="p-2 align-middle">
+                            <span class="text-white-50 px-1">s/</span>
+                            <a class="text-decoration-none text-reset fw-semibold"
+                                href="{{ route('snippets.show', $snippet) }}">{{ $snippet->title }}</a>
                         </li>
                     @endforeach
                     @foreach ($users as $user)
                         @if ($user->public)
-                            <li class="p-2"><span
-                                    class="text-white-50 px-1">u/</span>{{ $user->name }}</li>
+                            <li class="p-2 align-middle">
+                                <span class="text-white-50 px-1">u/</span>
+                                <a class="text-decoration-none text-reset fw-semibold"
+                                    href="{{ route('profiles.show', $user) }}">{{ $user->name }}</a>
+                            </li>
                         @endif
                     @endforeach
                     @foreach ($communities as $community)
-                        <li class="p-2"><span
-                                class="text-white-50 px-1">c/</span>{{ $community->name }}</li>
+                        <li class="p-2 align-middle">
+                            <span class="text-white-50 px-1">c/</span>
+                            <a class="text-decoration-none text-reset fw-semibold"
+                                href="{{ route('communities.show', $community) }}">{{ $community->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
