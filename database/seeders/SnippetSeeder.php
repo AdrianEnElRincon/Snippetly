@@ -16,13 +16,9 @@ class SnippetSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
+        foreach(User::all() as $user) {
 
-        foreach($users as $user) {
-
-            if ($user->id === 1) continue;
-
-            Snippet::factory(10)->create([
+            Snippet::factory(random_int(1,10))->create([
                 'user_id' => $user->id
             ]);
 

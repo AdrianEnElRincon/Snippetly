@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Snippet;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,10 +28,13 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 LanguageSeeder::class,
                 SnippetSeeder::class,
+                CommentSeeder::class,
+                CommunitySeeder::class,
+                SubscriptionSeeder::class,
             ]);
         }
 
-        
+
 
     }
 }

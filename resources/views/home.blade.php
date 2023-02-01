@@ -19,10 +19,6 @@
 
 @section('content')
 
-    <x-loader />
-
-    <x-navbar />
-    
     <livewire:search-bar />
 
     <x-top-snippets />

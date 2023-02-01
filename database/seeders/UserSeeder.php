@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Roles::Admin->value;
 
         User::factory()->create([
             'name' => 'Administrador',
@@ -24,6 +23,6 @@ class UserSeeder extends Seeder
             'public' => false
         ]);
 
-        User::factory(100)->create();
+        User::factory(50)->create();
     }
 }

@@ -44,7 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'public' => 'boolean',
-        'preferences' => 'array'
+        'preferences' => 'object',
     ];
 
     public function snippets()
@@ -55,5 +55,15 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class)->using(Subscription::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }

@@ -22,11 +22,18 @@ class Snippet extends Model
         'lang_id'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function lang() {
+    public function lang()
+    {
         return $this->belongsTo(Language::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

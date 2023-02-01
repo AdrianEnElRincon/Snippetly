@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Enums\Languages;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Snippet>
@@ -19,7 +20,7 @@ class SnippetFactory extends Factory
     {
         return [
             'title' => fake()->text('40'),
-            'description' => fake()->text(),
+            'description' => fake()->paragraph(),
             'content' => prettyHTML(fake()->randomHtml()),
             'lang_id' => langs()->id('html'),
             'views' => fake()->numberBetween(0, 10_000),
