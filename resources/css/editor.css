@@ -1,0 +1,6 @@
+#editor {
+    color: rgba(0, 0, 0, 0);
+    caret-color: white;
+    background-color: rgba(0, 0, 0, 0) !important;
+    resize: none;
+}

@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Languages;
 use App\Models\Snippet;
 use App\Http\Requests\StoreSnippetRequest;
 use App\Http\Requests\UpdateSnippetRequest;
 use App\Models\Comment;
+use App\Models\Language;
 
 class SnippetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class SnippetController extends Controller
      */
     public function index()
     {
-        //
+        return view('snippets.index', ['snippets' => Snippet::where('user_id', '=', auth()->user()->id)->latest()->get()]);
     }
 
     /**
@@ -26,7 +33,11 @@ class SnippetController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'languages' => Language::all()
+        ];
+
+        return view('snippets.create', $data);
     }
 
     /**
@@ -37,7 +48,17 @@ class SnippetController extends Controller
      */
     public function store(StoreSnippetRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $snippet = Snippet::factory()->create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'lang_id' => Language::where('name', '=', $data['language'])->first()->id,
+            'content' => $data['content'],
+            'user_id' => auth()->user()->id
+        ]);
+
+        return redirect()->to(route('snippets.show', $snippet));
     }
 
     /**
@@ -48,10 +69,6 @@ class SnippetController extends Controller
      */
     public function show(Snippet $snippet)
     {
-        $comments = Comment::where('snippet_id', '=', $snippet->id)->get();
-
-
-
         $data = [
             'snippet' => $snippet,
             'comments' => match(request()->sortBy) {
@@ -73,7 +90,12 @@ class SnippetController extends Controller
      */
     public function edit(Snippet $snippet)
     {
-        //
+        $data = [
+            'snippet' => $snippet,
+            'languages' => Language::all()
+        ];
+
+        return view('snippets.edit', $data);
     }
 
     /**
@@ -85,7 +107,14 @@ class SnippetController extends Controller
      */
     public function update(UpdateSnippetRequest $request, Snippet $snippet)
     {
-        //
+        $data = $request->validated();
+
+        $snippet->title = $data['title'];
+        $snippet->description = $data['description'];
+        $snippet->lang = Language::where('name', '=', $data['language'])->get();
+        $snippet->content = $data['content'];
+
+        return redirect()->to(route('snippets.show', $snippet));
     }
 
     /**
@@ -96,7 +125,9 @@ class SnippetController extends Controller
      */
     public function destroy(Snippet $snippet)
     {
-        //
+        $snippet->delete();
+
+        return redirect()->to(route('snippets.index'));
     }
 
 }

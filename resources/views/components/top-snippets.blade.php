@@ -1,9 +1,13 @@
 @push('styles')
     @auth
-        <link rel="stylesheet" href="{{ hljs()->asset(prefs()->style) }}">
+        <link rel="stylesheet" href="{{ hljs()->asset(auth()->user()->profile->style) }}">
     @else
         <link rel="stylesheet" href="{{ hljs()->asset('atom-one-dark') }}">
     @endauth
+@endpush
+
+@push('scripts')
+    <script type="module" src="{{ Vite::asset('resources/js/highlightAll.js') }}"></script>
 @endpush
 
 <div class="container mt-3">

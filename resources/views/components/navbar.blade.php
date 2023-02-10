@@ -1,22 +1,33 @@
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <x-app-logo type="brand"></x-app-logo>
-        </a>
-        <div class="d-flex">
-            <x-lang-switch class="me-2" />
-
-            @auth
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <input class="btn btn-danger me-0" type="submit" value="{{ __('ui.logout') }}">
-                </form>
-            @else
-                <a class="btn btn-success me-2" href="{{ route('login') }}">{{ __('ui.login') }}</a>
-                <a class="btn btn-secondary"
-                    href="{{ route('register') }}">{{ __('ui.register') }}</a>
-            @endauth
+<nav class="container-fluid mt-2 ps-0" data-bs-theme="dark">
+    <div class="row">
+        <div class="col-auto">
+            <a href="{{ route('home') }}">
+                @include('components.app-logo', ['type' => 'brand'])
+            </a>
         </div>
+
+        <div class="col">
+            @livewire('search-bar')
+        </div>
+
+        <div class="col-auto">
+            <div class="d-flex">
+
+                @include('components.lang-switch')
+
+                @auth
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <input class="btn btn-danger me-0" type="submit" value="{{ __('ui.logout') }}">
+                    </form>
+                @else
+                    <a class="btn btn-success me-2" href="{{ route('login') }}">{{ __('ui.login') }}</a>
+                    <a class="btn btn-secondary"
+                        href="{{ route('register') }}">{{ __('ui.register') }}</a>
+                @endauth
+            </div>
+        </div>
+
     </div>
     @auth
         <button id="toggle-sidebar-menu" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
@@ -40,13 +51,13 @@
         <div class="offcanvas-body">
             <ul class="nav flex-column gap-3">
                 <li class="d-grid">
-                    <a class="btn btn-danger" href="#">
+                    <a class="btn btn-danger" href="{{ route('snippets.create') }}">
                         <span class="bi bi-plus"></span>
                         <span>{{ __('snippets.create') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-danger" href="#">
+                    <a class="btn btn-danger" href="{{ route('snippets.index') }}">
                         <span class="bi bi-eye-fill"></span>
                         <span>{{ __('snippets.show') }}</span>
                     </a>
@@ -62,21 +73,21 @@
                     <hr class="hr">
                 </div>
                 <li class="d-grid">
-                    <a class="btn btn-primary" href="#">
+                    <a class="btn btn-primary" href="{{ route('communities.create') }}">
                         <span class="bi bi-plus"></span>
-                        <span>{{ __('snippets.comunity.create') }}</span>
+                        <span>{{ __('communities.create') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-primary" href="#">
+                    <a class="btn btn-primary" href="{{ route('communities.index') }}">
                         <span class="bi bi-eye-fill"></span>
-                        <span>{{ __('snippets.comunity.show') }}</span>
+                        <span>{{ __('communities.show') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-primary" href="#">
+                    <a class="btn btn-primary" href="{{ route('communities.search') }}">
                         <span class="bi bi-search"></span>
-                        <span>{{ __('snippets.comunity.search') }}</span>
+                        <span>{{ __('communities.search') }}</span>
                     </a>
                 </li>
                 <div>
@@ -84,13 +95,19 @@
                     <hr class="hr">
                 </div>
                 <li class="d-grid">
-                    <a class="btn btn-secondary" href="#">
+                    <a class="btn btn-secondary" href="{{ route('profiles.show', auth()->user()->profile) }}">
+                        <span class="bi bi-person-circle"></span>
+                        <span>{{ __('ui.profile.show') }}</span>
+                    </a>
+                </li>
+                <li class="d-grid">
+                    <a class="btn btn-secondary" href="{{ route('profiles.edit', auth()->user()->profile) }}">
                         <span class="bi bi-pencil"></span>
                         <span>{{ __('ui.profile.edit') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-secondary" href="#">
+                    <a class="btn btn-secondary" href="{{ route('profiles.config') }}">
                         <span class="bi bi-gear"></span>
                         <span>{{ __('ui.profile.config') }}</span>
                     </a>

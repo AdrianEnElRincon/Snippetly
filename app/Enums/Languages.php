@@ -9,7 +9,6 @@ enum Languages: string
     case AsciiDoc = 'AsciiDoc';
     case Bash = 'Bash Script';
     case Basic = 'Basic';
-    case Blade = 'Laravel Blade';
     case Brainfuck = 'Brainfuck';
     case Csharp = 'C#';
     case C = 'C';
@@ -22,7 +21,6 @@ enum Languages: string
     case GLSL = 'OpenGL Shading Language';
     case HTML = 'HTML';
     case HTTP = 'HTTP';
-    case HLSL = 'High-level shader language';
     case JSON = 'JSON';
     case Java = 'Java';
     case JavaScript = 'JavaScript';
@@ -45,10 +43,7 @@ enum Languages: string
     case SCSS = 'SCSS';
     case SQL = 'SQL';
     case Shell = 'Shell';
-    case Solidity = 'Solidity';
-    case Svelte = 'Svelte';
     case Swift = 'Swift';
-    case TSQL = 'Transact-SQL';
     case TypeScript = 'TypeScript';
     case Vim = 'Vim Script';
     case X86Asm = 'x86 Assembly';

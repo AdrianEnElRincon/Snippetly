@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +33,20 @@ class CommentController extends Controller
     public function create()
     {
         //
+    }
+
+    public function like(Comment $comment)
+    {
+        $comment->likes++;
+
+        $comment->save();
+    }
+
+    public function dislike(Comment $comment)
+    {
+        $comment->dislikes++;
+
+        $comment->save();
     }
 
     /**

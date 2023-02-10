@@ -39,5 +39,4 @@
                     transform="translate(21.657 12) rotate(135)" />
             </svg>
     @endswitch
-    {{ $slot }}
 </div>

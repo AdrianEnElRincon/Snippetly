@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Roles;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,13 +16,24 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'Administrador',
-            'email' => 'admin@snippely.com',
+            'email' => 'admin@snippetly.com',
             'role_id' => roles()->id('admin'),
+        ]);
+
+        Profile::factory()->create([
+            'user_id' => $admin->id,
             'public' => false
         ]);
 
         User::factory(50)->create();
+
+        foreach(User::all() as $user)
+        {
+            Profile::factory()->create([
+                'user_id' => $user->id
+            ]);
+        }
     }
 }

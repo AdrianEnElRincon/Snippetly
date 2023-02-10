@@ -8,6 +8,22 @@ use App\Http\Requests\UpdateCommunityRequest;
 
 class CommunityController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Search 
+     *
+     *
+     */
+    public function search()
+    {
+        //
+    }
+
     /**
      * Display a listing of the resource.
      *

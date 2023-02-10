@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('subscription', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id');
-            $table->foreignId('community_id')->constrained('communities', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignId('community_id')->constrained('communities', 'id')->cascadeOnDelete();
             $table->boolean('owner')->default(false);
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class StoreSnippetRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreSnippetRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string',
+            'description' => 'nullable|string',
+            'language' => 'required|string',
+            'content' => 'required|string'
         ];
     }
 }

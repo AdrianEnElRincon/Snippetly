@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Community extends Model
 {
@@ -16,7 +15,13 @@ class Community extends Model
         'owner'
     ];
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class)->using(Subscription::class);
+    }
+
+    public function snippets()
+    {
+        return $this->hasMany(Snippet::class);
     }
 }

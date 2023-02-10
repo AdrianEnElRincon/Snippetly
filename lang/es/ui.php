@@ -28,5 +28,6 @@ return [
     'popular' => 'Popularidad',
     'user' => 'Usuario',
     'controversial' => 'Polémico',
-    'recent' => 'Mas Reciente'
+    'recent' => 'Mas Reciente',
+    'no-results' => 'No Se Encuentran Resultados...'
 ];

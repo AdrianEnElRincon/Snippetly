@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('snippet_id')->constrained('snippets','id');
-            $table->foreignId('user_id')->constrained('users','id');
+            $table->foreignId('snippet_id')->constrained('snippets','id')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users','id')->cascadeOnDelete();
             $table->text('content');
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('dislikes')->default(0);

@@ -25,14 +25,22 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('auth')->group(function () {
-    Route::resource('snippets', SnippetController::class);
-    Route::resource('communities', CommunityController::class);
-    Route::resource('profiles', ProfileController::class);
-    Route::resource('comments', CommentController::class)->only([
-        'store', 'update', 'destroy'
-    ]);
-});
+Route::resource('snippets', SnippetController::class);
+
+Route::resource('communities', CommunityController::class);
+
+Route::get('/comunities/search', [CommunityController::class, 'search'])->name('communities.search');
+
+Route::resource('comments', CommentController::class)->only(['store', 'update', 'destroy']);
+
+Route::get('/comments/{comment}/like', [CommentController::class, 'like'])->name('comments.like');
+
+Route::get('/comments/{comment}/dislike', [CommentController::class, 'dislike'])->name('comments.dislike');
+
+Route::resource('profiles', ProfileController::class);
+
+Route::get('/config', [ProfileController::class, 'config'])->name('profiles.config');
+
 
 Route::get('set-locale/{locale}', function ($locale) {
     App::setLocale($locale);

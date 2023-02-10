@@ -24,8 +24,6 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'public',
-        'preferences',
     ];
 
     /**
@@ -45,21 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'public' => 'boolean',
     ];
-
-    /**
-     * Get the user preferences
-     *
-     * @return Illuminate\Database\Eloquent\Casts\Attribute;
-     */
-    protected function preferences() : Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => json_decode($value),
-            set: fn ($value) => json_encode($value),
-        );
-    }
 
     public function snippets()
     {

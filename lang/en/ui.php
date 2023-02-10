@@ -25,8 +25,9 @@ return [
     'comments' => 'Comments',
     'make-comment' => 'Make A Comment',
     'save' => 'Save',
-    'polular' => 'Popularity',
+    'popular' => 'Popularity',
     'user' => 'User',
     'recent' => 'Most Recent',
-    'controversial' => 'Controversial'
+    'controversial' => 'Controversial',
+    'no-results' => 'No Search Results Matching Our Records ...',
 ];

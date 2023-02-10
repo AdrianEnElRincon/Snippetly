@@ -1,8 +1,3 @@
-import hljs from "highlight.js";
-import 'highlight.js/styles/atom-one-dark.css'
-
-hljs.highlightAll()
-
 $('[data-bs-target="#expand-snippet-modal"]').on('click', function (ev) {
 
     var card = $($(this).parents('.card'))
