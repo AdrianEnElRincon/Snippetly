@@ -18,6 +18,7 @@ class Localization
     {
         if(session()->has('locale')){
             app()->setLocale(session('locale'));
+            setlocale(LC_ALL, session('locale'));
         }
 
         return $next($request);

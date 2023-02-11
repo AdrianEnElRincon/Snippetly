@@ -68,6 +68,10 @@ class ProfileController extends Controller
             'profile' => $profile
         ];
 
+        if (! $profile->public) {
+            return abort(403);
+        }
+
         return view('profiles.show', $data);
     }
 

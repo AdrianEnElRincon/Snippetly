@@ -31,6 +31,8 @@ class UserSeeder extends Seeder
 
         foreach(User::all() as $user)
         {
+            if ($user->id === $admin->id) continue;
+
             Profile::factory()->create([
                 'user_id' => $user->id
             ]);
