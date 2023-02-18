@@ -40,6 +40,8 @@ class CommentController extends Controller
         $comment->likes++;
 
         $comment->save();
+
+        return redirect()->back();
     }
 
     public function dislike(Comment $comment)
@@ -47,6 +49,8 @@ class CommentController extends Controller
         $comment->dislikes++;
 
         $comment->save();
+
+        return redirect()->back();
     }
 
     /**

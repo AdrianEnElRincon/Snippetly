@@ -65,7 +65,7 @@
 
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end"
-                                    for="password-confirm">{{ __('ui.confirm-pasword') }}</label>
+                                    for="password-confirm">{{ __('ui.confirm-password') }}</label>
 
                                 <div class="col-md-6">
                                     <input class="form-control" id="password-confirm" type="password"

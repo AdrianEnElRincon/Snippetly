@@ -27,9 +27,13 @@ Auth::routes();
 
 Route::resource('snippets', SnippetController::class);
 
+Route::get('/snippets/{snippet}/like', [SnippetController::class, 'like'])->name('snippets.like');
+
+Route::get('/snippets/{snippet}/dislike', [SnippetController::class, 'dislike'])->name('snippets.dislike');
+
 Route::resource('communities', CommunityController::class);
 
-Route::get('/comunities/search', [CommunityController::class, 'search'])->name('communities.search');
+Route::get('/communities/search', [CommunityController::class, 'search'])->name('communities.search');
 
 Route::resource('comments', CommentController::class)->only(['store', 'update', 'destroy']);
 

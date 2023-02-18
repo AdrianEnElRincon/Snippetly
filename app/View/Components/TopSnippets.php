@@ -16,6 +16,13 @@ class TopSnippets extends Component
     public $snippets;
 
     /**
+     * The styles to use to highlight the snippets
+     *
+     * @var string
+     */
+    public $styles;
+
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -23,6 +30,7 @@ class TopSnippets extends Component
     public function __construct()
     {
         $this->snippets = Snippet::orderBy('views', 'DESC')->limit(10)->get();
+        $this->styles = auth()->check() ? auth()->user()->profile->style : 'atom-one-dark';
     }
 
     /**
@@ -32,6 +40,6 @@ class TopSnippets extends Component
      */
     public function render()
     {
-        return view('components.top-snippets');
+        return view('components.snippets-preview');
     }
 }

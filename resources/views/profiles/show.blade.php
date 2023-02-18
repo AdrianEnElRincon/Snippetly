@@ -33,5 +33,6 @@
                 <p><span>{{ __('profiles.style') }}:</span>&nbsp;<span>{{ $profile->style }}</span></p>
             </div>
         </div>
+        <x-snippets-preview :snippets="$profile->user->snippets" :styles="$profile->style"/>
     </div>
 @endsection

@@ -71,7 +71,7 @@ class SnippetController extends Controller
     {
         $data = [
             'snippet' => $snippet,
-            'comments' => match(request()->sortBy) {
+            'comments' => match (request()->sortBy) {
                 'popular' => $snippet->comments->sortByDesc('likes'),
                 'controversial' => $snippet->comments->sortByDesc('dislikes'),
                 'recent' => $snippet->comments->sortByDesc('created_at'),
@@ -130,4 +130,21 @@ class SnippetController extends Controller
         return redirect()->to(route('snippets.index'));
     }
 
+    public function like(Snippet $snippet)
+    {
+        $snippet->likes++;
+
+        $snippet->save();
+
+        return redirect()->back();
+    }
+
+    public function dislike(Snippet $snippet)
+    {
+        $snippet->dislikes++;
+
+        $snippet->save();
+
+        return redirect()->back();
+    }
 }

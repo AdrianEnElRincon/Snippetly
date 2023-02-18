@@ -8,16 +8,16 @@
 
 
 @push('styles')
-@livewireStyles
+    @livewireStyles
 
-<link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
 @endpush
 
 
 @push('scripts')
-@livewireScripts
+    @livewireScripts
 
-<script type="module" src="{{ Vite::asset('resources/js/home.js') }}"></script>
+    <script type="module" src="{{ Vite::asset('resources/js/home.js') }}"></script>
 @endpush
 
 @section('content')
@@ -31,12 +31,17 @@
             </div>
             <div class="card-body">
                 <h3>Empieza a crear tus snippets registrandote en Snippetly!</h3>
-                <p>Para usar el editor de snippets y crear maravillosos fragmentos de codigo hace falta que te crees una cuenta, registrate y podras usar toda la apiclacion</p>
-                <a href="{{ route('register') }}" class="btn btn-primary">Registrate!</a>
+                <p>Para usar el editor de snippets y crear maravillosos fragmentos de codigo hace falta
+                    que te crees una cuenta, registrate y podras usar toda la apiclacion</p>
+                <a class="btn btn-primary" href="{{ route('register') }}">Registrate!</a>
             </div>
         </div>
     </div>
 @endguest
+
+<div class="container mt-5">
+    <h2 class="text-white text-center">{{ __('snippets.popular') }}</h2>
+</div>
 
 <x-top-snippets />
 

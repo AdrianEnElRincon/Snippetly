@@ -1,12 +1,14 @@
+@props([
+    'snippets',
+    'styles'
+])
+
 @push('styles')
-    @auth
-        <link rel="stylesheet" href="{{ hljs()->asset(auth()->user()->profile->style) }}">
-    @else
-        <link rel="stylesheet" href="{{ hljs()->asset('atom-one-dark') }}">
-    @endauth
+    <link rel="stylesheet" href="{{ hljs()->asset($styles) }}">
 @endpush
 
 @push('scripts')
+    <script type="module" src="{{ Vite::asset('resources/js/snippets-preview.js') }}"></script>
     <script type="module" src="{{ Vite::asset('resources/js/highlightAll.js') }}"></script>
 @endpush
 
@@ -18,7 +20,6 @@
             </filter>
         </defs>
     </svg>
-    <h5 class="text-white">{{ __('snippets.popular') }}</h5>
     <div class="row row-cols-md-1 row-cols-xxl-2 mt-3">
         @foreach ($snippets as $snippet)
             <div class="col mb-4">

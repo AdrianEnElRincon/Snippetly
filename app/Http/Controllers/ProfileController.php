@@ -68,7 +68,7 @@ class ProfileController extends Controller
             'profile' => $profile
         ];
 
-        if (! $profile->public) {
+        if ($profile->public === false & $profile->user->role->value !== 'admin') {
             return abort(403);
         }
 

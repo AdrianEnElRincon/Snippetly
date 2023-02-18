@@ -16,14 +16,20 @@
     <div class="container my-5 rounded">
         <form action="{{ route('snippets.store') }}" method="post" class="form">
             @csrf
-            <input class="form-control border-0" type="text" name="title" placeholder="{{ __('snippets.create-form.title') }}">
-            <textarea class="form-control mt-2 border-0" name="description" id="" cols="30" rows="10" placeholder="{{ __('snippets.create-form.description') }}" style="resize: none"></textarea>
-            <select class="form-select my-2 border-0" id="language-select" aria-label="Default select example" name="language">
-                <option selected disabled hidden>{{ __('snippets.create-form.select-lang') }}</option>
-                @foreach ($languages as $language)
-                    <option value="{{ $language->name }}">{{ $language->value }}</option>
-                @endforeach
-            </select>
+            <div class="col">
+                <div class="row gap-2">
+                    <input class="form-control border-0 col" type="text" name="title" placeholder="{{ __('snippets.create-form.title') }}">
+                    <select class="form-select border-0 col" id="language-select" aria-label="Default select example" name="language">
+                        <option selected disabled hidden>{{ __('snippets.create-form.select-lang') }}</option>
+                        @foreach ($languages as $language)
+                            <option value="{{ $language->name }}">{{ $language->value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="row">
+                    <textarea class="form-control mt-2 border-0" name="description" id="" cols="30" rows="4" placeholder="{{ __('snippets.create-form.description') }}" style="resize: none"></textarea>
+                </div>
+            </div>
             <label for="editor" class="form-label mt-2">{{ __('snippets.editor') }}</label>
             <div class="position-relative">
                 <textarea class="position-absolute z-2" id="editor" name="content"></textarea>
