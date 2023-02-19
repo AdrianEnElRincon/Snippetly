@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
+use App\Models\Subscription;
 
 class CommunityController extends Controller
 {
@@ -15,7 +16,7 @@ class CommunityController extends Controller
     }
 
     /**
-     * Search 
+     * Search
      *
      *
      */
@@ -31,7 +32,11 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'communities' => auth()->user()->communities
+        ];
+
+        return view('communities.index', $data);
     }
 
     /**
@@ -41,7 +46,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        //
+        return view('communities.create');
     }
 
     /**
@@ -98,5 +103,22 @@ class CommunityController extends Controller
     public function destroy(Community $community)
     {
         //
+    }
+
+    public function subscribe(Community $community)
+    {
+        Subscription::create([
+            'user_id' => auth()->user()->id,
+            'community_id' => $community->id,
+        ]);;
+
+        return redirect()->back()->with('success', __('communities.messages.subscribed', ['community' => $community->name]));
+    }
+
+    public function unsubscribe(Community $community)
+    {
+        Subscription::where('user_id', '=', auth()->user()->id)->where('community_id', '=', $community->id)->delete();
+
+        return redirect()->back()->with('success', __('communities.messages.unsubscribed', ['community' => $community->name]));
     }
 }

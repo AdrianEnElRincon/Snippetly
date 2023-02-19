@@ -1,3 +1,11 @@
+@push('scripts')
+    @livewireScripts
+@endpush
+
+@push('styles')
+    @livewireStyles
+@endpush
+
 <form class="z-2 col-8 position-relative translate-middle-x start-50" id="search-bar" action="">
     <div class="row">
         <div class="col input-group p-0">

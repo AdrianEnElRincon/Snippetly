@@ -1,4 +1,4 @@
-<nav class="container-fluid mt-2 ps-0" data-bs-theme="dark">
+<nav class="container-fluid pt-2 ps-0" data-bs-theme="dark">
     <div class="row">
         <div class="col-auto">
             <a href="{{ route('home') }}">
@@ -7,7 +7,7 @@
         </div>
 
         <div class="col">
-            @livewire('search-bar')
+            <livewire:search-bar />
         </div>
 
         <div class="col-auto">

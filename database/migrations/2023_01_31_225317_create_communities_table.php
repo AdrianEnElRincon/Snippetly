@@ -21,7 +21,7 @@ return new class extends Migration
         });
 
         Schema::table('snippets', function (Blueprint $table) {
-            $table->foreignId('community_id')->nullable()->constrained('communities', 'id');
+            $table->foreignId('community_id')->nullable()->constrained('communities', 'id')->nullOnDelete();
         });
     }
 

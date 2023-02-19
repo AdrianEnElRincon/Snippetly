@@ -29,6 +29,14 @@
                 <div class="row">
                     <textarea class="form-control mt-2 border-0" name="description" id="" cols="30" rows="4" placeholder="{{ __('snippets.create-form.description') }}" style="resize: none"></textarea>
                 </div>
+                <div class="row">
+                    <select class="form-select border-0 mt-2" name="community_id" id="">
+                        <option selected default>{{ __('snippets.create-form.no-community') }}</option>
+                        @foreach ($communities as $community)
+                            <option value="{{ $community->id }}">{{ $community->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <label for="editor" class="form-label mt-2">{{ __('snippets.editor') }}</label>
             <div class="position-relative">

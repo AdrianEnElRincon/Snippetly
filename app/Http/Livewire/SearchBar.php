@@ -31,7 +31,7 @@ class SearchBar extends Component
             $this->communities = [];
             $this->users = [];
         } else {
-            $this->snippets = Snippet::whereFullText('title', 'like', '%' . $this->search . '%')->limit(10)->get();
+            $this->snippets = Snippet::where('title', 'like', '%' . $this->search . '%')->limit(10)->get();
             $this->communities = Community::where('name', 'like', '%' . $this->search . '%')->limit(10)->get();
             $this->users = User::where('name', 'like', '%' . $this->search . '%')->limit(10)->get();
         }

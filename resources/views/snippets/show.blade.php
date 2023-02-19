@@ -13,7 +13,12 @@
 @section('content')
 
     <div class="container mt-4">
-
+        @if (session('success'))
+            <div class="alert alert-success" data-bs-theme="dark" role="alert">
+                <span class="bi bi-check-circle-fill"></span>
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="row justify-content-between">
             <div class="col">
                 <h1>{{ $snippet->title }}</h1>
@@ -21,10 +26,12 @@
             @auth
                 @if ($snippet->user_id === auth()->user()->id)
                     <div class="col d-flex justify-content-end p-2 gap-2">
-                        <a class="btn btn-warning " href="{{ route('snippets.edit', $snippet) }}">
-                            <span class="bi bi-pencil"></span>
-                            <span>{{ __('snippets.edit') }}</span>
-                        </a>
+                        <div>
+                            <a class="btn btn-warning " href="{{ route('snippets.edit', $snippet) }}">
+                                <span class="bi bi-pencil"></span>
+                                <span>{{ __('snippets.edit') }}</span>
+                            </a>
+                        </div>
                         <form action="{{ route('snippets.destroy', $snippet) }}" method="post">
                             @csrf
                             @method('delete')

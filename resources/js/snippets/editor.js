@@ -3,10 +3,10 @@ import hljs from 'highlight.js'
 
 const render = $('#render')
 
-const languagueSelect = $('#language-select')
+const languageSelect = $('#language-select')
 
-languagueSelect.on('change', function(ev) {
-    render.get(0).classList = `hljs language-${languagueSelect.val().toLocaleLowerCase()}`
+languageSelect.on('change', function(ev) {
+    render.get(0).classList = `hljs language-${languageSelect.val().toLocaleLowerCase()}`
     hljs.highlightAll()
 })
 
@@ -46,9 +46,6 @@ function handleKeyboardControls(/** @type {KeyboardEvent} */ event) {
 
     const tab = '    '
 
-
-    console.log(event.key)
-
     switch (event.key) {
         case 'Escape':
             document.activeElement.blur()
@@ -56,6 +53,7 @@ function handleKeyboardControls(/** @type {KeyboardEvent} */ event) {
         case 'Tab':
             event.preventDefault()
             insertAtCursor(event.target, tab)
+            hljs.highlightAll()
             break
     }
 

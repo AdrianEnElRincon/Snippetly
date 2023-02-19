@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function communities()
     {
-        return $this->belongsToMany(Community::class)->using(Subscription::class);
+        return $this->belongsToMany(Community::class, 'subscriptions')->using(Subscription::class);
     }
 
     public function profile()

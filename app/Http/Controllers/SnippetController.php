@@ -34,7 +34,8 @@ class SnippetController extends Controller
     public function create()
     {
         $data = [
-            'languages' => Language::all()
+            'languages' => Language::all(),
+            'communities' => auth()->user()->communities,
         ];
 
         return view('snippets.create', $data);
@@ -58,7 +59,7 @@ class SnippetController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect()->to(route('snippets.show', $snippet));
+        return redirect()->to(route('snippets.show', $snippet))->with('success', __('snippets.messages.created', ['snippet' => $snippet->title]));
     }
 
     /**
@@ -114,7 +115,7 @@ class SnippetController extends Controller
         $snippet->lang = Language::where('name', '=', $data['language'])->get();
         $snippet->content = $data['content'];
 
-        return redirect()->to(route('snippets.show', $snippet));
+        return redirect()->to(route('snippets.show', $snippet))->with('success', __('snippets.messages.updated', ['snippet' => $snippet->title]));
     }
 
     /**
@@ -127,7 +128,7 @@ class SnippetController extends Controller
     {
         $snippet->delete();
 
-        return redirect()->to(route('snippets.index'));
+        return redirect()->to(route('snippets.index'))->with('success', __('snippets.messages.deleted', ['snippet' => $snippet->title]));
     }
 
     public function like(Snippet $snippet)

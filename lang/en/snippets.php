@@ -12,9 +12,15 @@ return [
     'create-form' => [
         'title' => 'Title',
         'description' => 'Description',
-        'select-lang' => 'Select the language of the Snippet'
+        'select-lang' => 'Select the language of the Snippet',
+        'no-community' => 'Don\'t publish to a community',
     ],
     'editor' => 'Snippet Editor',
     'edit' => 'Edit',
-    'delete' => 'Delete'
+    'delete' => 'Delete',
+    'messages' => [
+        'deleted' => 'Successfully deleted the snippet :snippet.',
+        'created' => 'Successfully created the snippet :snippet.',
+        'updated' => 'Successfully updated the snippet :snippet.',
+    ],
 ];

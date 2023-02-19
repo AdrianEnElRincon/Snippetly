@@ -8,15 +8,11 @@
 
 
 @push('styles')
-    @livewireStyles
-
     <link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
 @endpush
 
 
 @push('scripts')
-    @livewireScripts
-
     <script type="module" src="{{ Vite::asset('resources/js/home.js') }}"></script>
 @endpush
 

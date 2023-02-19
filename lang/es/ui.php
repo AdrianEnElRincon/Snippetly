@@ -19,7 +19,7 @@ return [
     'profile' => [
         'show' => 'Perfil',
         'edit' => 'Editar perfil',
-        'config' => 'Ajustes'
+        'config' => 'Preferencias'
     ],
     'menu' => 'Panel de control',
     'comments' => 'Comentarios',

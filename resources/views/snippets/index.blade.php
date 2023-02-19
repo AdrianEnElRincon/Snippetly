@@ -11,7 +11,13 @@
 @endpush
 
 @section('content')
-<div class="container">
+    <div class="container mt-4">
+        @if (session('success'))
+            <div class="alert alert-success" data-bs-theme="dark" role="alert">
+                <span class="bi bi-check-circle-fill"></span>
+                {{ session('success') }}
+            </div>
+        @endif
         <h1 class="mt-4">{{ __('snippets.your-snippets') }}</h1>
         <div class="row row-cols-md-1 row-cols-xxl-2 mt-3">
             @foreach ($snippets as $snippet)
