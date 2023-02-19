@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('communities', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });
 
         Schema::table('snippets', function (Blueprint $table) {
-            $table->foreignId('community_id')->nullable()->constrained('communities', 'id')->nullOnDelete();
+            $table->foreignUlid('community_id')->nullable()->constrained('communities', 'id')->nullOnDelete();
         });
     }
 

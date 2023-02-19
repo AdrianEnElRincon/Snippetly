@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id');
+            $table->ulid('id')->primary();
+            $table->foreignUlid('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->boolean('public');
             $table->string('style');
             $table->timestamps();

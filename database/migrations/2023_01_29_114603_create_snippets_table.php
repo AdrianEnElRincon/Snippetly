@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('snippets', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('content');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('views');
             $table->boolean('public');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignUlid('user_id')->constrained('users', 'id')->cascadeOnDelete();
         });
     }
 
