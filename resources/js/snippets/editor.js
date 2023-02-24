@@ -6,74 +6,52 @@ const render = $('#render')
 const languageSelect = $('#language-select')
 
 languageSelect.on('change', function(ev) {
-    render.get(0).classList = `hljs language-${languageSelect.val().toLocaleLowerCase()}`
-    hljs.highlightAll()
+    let model = monaco_editor.getModel()
+    monaco.editor.setModelLanguage(model, languageSelect.val().toLowerCase())
 })
 
-const editor = $('#editor')
+import * as monaco from 'monaco-editor'
 
-const renderStyles = getComputedStyle(render.get(0))
+self.MonacoEnvironment = {
+    getWorker: function (workerId, label) {
+        const getWorkerModule = (moduleUrl, label) => {
+            return new Worker(self.MonacoEnvironment.getWorkerUrl(moduleUrl), {
+                name: label,
+                type: 'module'
+            });
+        };
 
-editor.css('font', renderStyles.font)
-
-render.css('height', 720)
-
-editor.css('height', 720)
-
-editor.css('padding', render.css('padding'))
-
-editor.css('width', render.css('width'))
-
-document.addEventListener('DOMContentLoaded', () => {
-    render.text(editor.val())
-    hljs.highlightAll()
-})
-
-editor.on('input', function (ev) {
-    render.text(this.value)
-    hljs.highlightAll()
-})
-
-editor.get(0).addEventListener('focusin', function (ev) {
-    editor.get(0).addEventListener('keydown', handleKeyboardControls)
-})
-
-editor.get(0).addEventListener('focusout', function (ev) {
-    editor.get(0).removeEventListener('keydown', handleKeyboardControls)
-})
-
-function handleKeyboardControls(/** @type {KeyboardEvent} */ event) {
-
-    const tab = '    '
-
-    switch (event.key) {
-        case 'Escape':
-            document.activeElement.blur()
-            break
-        case 'Tab':
-            event.preventDefault()
-            insertAtCursor(event.target, tab)
-            hljs.highlightAll()
-            break
+        switch (label) {
+            case 'json':
+                return getWorkerModule('/monaco/esm/vs/language/json/json.worker.js', label);
+            case 'css':
+            case 'scss':
+            case 'less':
+                return getWorkerModule('/monaco/esm/vs/language/css/css.worker.js', label);
+            case 'html':
+            case 'handlebars':
+            case 'razor':
+                return getWorkerModule('/monaco/esm/vs/language/html/html.worker.js', label);
+            case 'typescript':
+            case 'javascript':
+                return getWorkerModule('/monaco/esm/vs/language/typescript/ts.worker.js', label);
+            default:
+                return getWorkerModule('/monaco/esm/vs/editor/editor.worker.js', label);
+        }
+    },
+    getWorkerUrl: function (moduleUrl) {
+        return 'http://127.0.0.1:8000' + moduleUrl;
     }
+};
 
-}
+var monaco_editor = monaco.editor.create(document.getElementById('editor'), {
+    value: $('#editor').data('old-content'),
+    language: languageSelect.val().toLowerCase(),
+    theme: 'vs-dark',
+    lineNumbers: 'off',
+    scrollBeyondLastLine: false
+})
 
-function insertAtCursor(myField, myValue) {
-    //IE support
-    if (document.selection) {
-        myField.focus();
-        sel = document.selection.createRange();
-        sel.text = myValue;
-    }
-    //MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
-    } else {
-        myField.value += myValue;
-    }
-}
+monaco_editor.onDidChangeModelContent(e => {
+    $('input[name=content]').val(monaco_editor.getModel().getLinesContent().join('\n'))
+})

@@ -58,6 +58,12 @@
                         <span>{{ __('admin.users') }}</span>
                     </a>
                 </li>
+                <li class="d-grid">
+                    <a class="btn btn-outline-primary" href="{{ route('admin.database') }}">
+                        <span class="bi bi-database"></span>
+                        <span>{{ __('admin.database') }}</span>
+                    </a>
+                </li>
             </ul>
         </div>
 </nav>

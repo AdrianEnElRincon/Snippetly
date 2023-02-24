@@ -7,4 +7,5 @@ return [
     'users' => 'Manage Users',
     'communities' => 'Manage Communities',
     'comments' => 'Manage Comments',
+    'database' => 'Manage Database',
 ];

@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "highlight.js": "^11.7.0"
+        "highlight.js": "^11.7.0",
+        "monaco-editor": "^0.35.0"
     }
 }

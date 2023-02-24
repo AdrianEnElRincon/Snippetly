@@ -90,4 +90,5 @@ Route::get('set-locale/{locale}', function ($locale) {
  */
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdministrationController::class, 'dashboard'])->name('dashboard');
+    Route::get('/database', [AdministrationController::class, 'createQuery'])->name('database');
 });
