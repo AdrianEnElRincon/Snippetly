@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
+use App\Models\Snippet;
 use App\Models\Subscription;
 
 class CommunityController extends Controller
@@ -16,16 +17,6 @@ class CommunityController extends Controller
     }
 
     /**
-     * Search
-     *
-     *
-     */
-    public function search()
-    {
-        //
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +24,7 @@ class CommunityController extends Controller
     public function index()
     {
         $data = [
-            'communities' => auth()->user()->communities
+            'communities' => auth()->user()->communities->sortByDesc('created_at')
         ];
 
         return view('communities.index', $data);
@@ -57,7 +48,20 @@ class CommunityController extends Controller
      */
     public function store(StoreCommunityRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $community = Community::factory()->create([
+            'name' => $data['name'],
+            'description' => $data['description'],
+        ]);
+
+        Subscription::factory()->create([
+            'user_id' => auth()->user()->id,
+            'community_id' => $community->id,
+            'is_owner' => true,
+        ]);
+
+        return redirect()->to(route('communities.index'))->with('success', __('communities.messages.created', ['community' => $community->name]));
     }
 
     /**
@@ -68,7 +72,9 @@ class CommunityController extends Controller
      */
     public function show(Community $community)
     {
-        //
+        $snippets = Snippet::where('community_id', '=', $community->id)->get();
+
+        return view('communities.show', compact('community', 'snippets'));
     }
 
     /**

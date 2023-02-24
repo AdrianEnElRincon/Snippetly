@@ -16,3 +16,15 @@ if (!function_exists('date_dmy_array')) :
     }
 
 endif;
+
+
+if (! function_exists('human_readable_date_diff')) :
+
+    function human_readable_date_diff(\Carbon\Carbon $date)
+    {
+        $locale = Illuminate\Support\Facades\App::getLocale();
+
+        return $date->locale($locale)->diffForHumans();
+    }
+
+endif;

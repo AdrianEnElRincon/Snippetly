@@ -4,7 +4,7 @@
 ])
 
 @push('styles')
-    <link rel="stylesheet" href="{{ hljs()->asset($styles) }}">
+    <link rel="stylesheet" href="{{ hljs()->asset($styles ?? auth()->user()->profile->style) }}">
 @endpush
 
 @push('scripts')

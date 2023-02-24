@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <div class="row justify-content-between">
             <div class="col">
-                <h1>{{ $profile->user->name }}</h1>
+                <h1><span class="text-white-50">u/</span>{{ $profile->user->name }}</h1>
                 <p class="text-white-50">
                     <span class="badge bg-secondary">{{ $profile->user->role->name }}</span>
                     <span>{{ $profile->user->email }}</span>

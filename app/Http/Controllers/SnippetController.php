@@ -56,7 +56,8 @@ class SnippetController extends Controller
             'description' => $data['description'],
             'lang_id' => Language::where('name', '=', $data['language'])->first()->id,
             'content' => $data['content'],
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'community_id' => $data['community_id']
         ]);
 
         return redirect()->to(route('snippets.show', $snippet))->with('success', __('snippets.messages.created', ['snippet' => $snippet->title]));
@@ -70,6 +71,10 @@ class SnippetController extends Controller
      */
     public function show(Snippet $snippet)
     {
+        $snippet->views++;
+
+        $snippet->save();
+
         $data = [
             'snippet' => $snippet,
             'comments' => match (request()->sortBy) {
@@ -131,6 +136,12 @@ class SnippetController extends Controller
         return redirect()->to(route('snippets.index'))->with('success', __('snippets.messages.deleted', ['snippet' => $snippet->title]));
     }
 
+    /**
+     * Update likes counter on resource
+     *
+     * @param  \App\Models\Snippet  $snippet
+     * @return \Illuminate\Http\Response
+     */
     public function like(Snippet $snippet)
     {
         $snippet->likes++;
@@ -140,6 +151,12 @@ class SnippetController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Update dislikes counter on resource
+     *
+     * @param  \App\Models\Snippet  $snippet
+     * @return \Illuminate\Http\Response
+     */
     public function dislike(Snippet $snippet)
     {
         $snippet->dislikes++;

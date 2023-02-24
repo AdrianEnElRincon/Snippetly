@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,8 @@ Route::get('/snippets/{snippet}/like', [SnippetController::class, 'like'])->name
 
 Route::get('/snippets/{snippet}/dislike', [SnippetController::class, 'dislike'])->name('snippets.dislike');
 
+Route::get('/snippets/discover', [SnippetController::class, 'discover'])->name('snippets.discover');
+
 /**
  *
  * Communities Routes
@@ -43,7 +46,7 @@ Route::get('/snippets/{snippet}/dislike', [SnippetController::class, 'dislike'])
  */
 Route::resource('communities', CommunityController::class);
 
-Route::get('/communities/search', [CommunityController::class, 'search'])->name('communities.search');
+Route::get('/communities/discover', [CommunityController::class, 'discover'])->name('communities.discover');
 
 Route::get('/communities/{community}/subscribe', [CommunityController::class, 'subscribe'])->name('communities.subscribe');
 
@@ -80,5 +83,11 @@ Route::get('set-locale/{locale}', function ($locale) {
     return redirect()->back();
 })->middleware('check.locale')->name('locale.setting');
 
-
-
+/**
+ *
+ * Administrative tasks routes
+ *
+ */
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdministrationController::class, 'dashboard'])->name('dashboard');
+});

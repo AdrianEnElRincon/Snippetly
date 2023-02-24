@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'admin' => 'Administrador',
     'login' => 'Iniciar sesión',
     'register' => 'Registrarse',
     'logout' => 'Salir',

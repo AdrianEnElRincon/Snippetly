@@ -4,15 +4,32 @@
 
 @section('content')
 
-<div class="container">
-    <form class="position-absolute top-50 start-50 translate-middle w-auto row" action="{{ route('communities.store') }}" method="POST">
-        <label class="form-label" for="communities-name-input">{{ __('communities.create-form.name') }}</label>
-        <input id="communities-name-input" class="form-control mb-3" type="text" name="name">
-        <label class="form-label" for="communities-description-input">{{ __('communities.create-form.description') }}</label>
-        <textarea id="communities-description-input" class="form-control mb-3" name="description"></textarea>
-        <input class="btn btn-primary" type="submit" value="{{ __('ui.save') }}">
-    </form>
-</div>
+    <div class="container">
+        <div class="row">
+            <form class="position-absolute top-50 start-50 translate-middle col-6"
+                action="{{ route('communities.store') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <label class="form-label"
+                        for="communities-name-input">{{ __('communities.create-form.name') }}</label>
+                    <input class="form-control mb-3 @error('name') is-invalid @enderror "
+                        id="communities-name-input" type="text" name="name">
+                    <div id="communities-name-inputFeedback" class="invalid-feedback mb-3">
+                        {{ __('validation.required', ['attribute' => __('communities.create-form.name')]) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="form-label"
+                        for="communities-description-input">{{ __('communities.create-form.description') }}</label>
+                    <textarea class="form-control mb-3" id="communities-description-input" name="description" rows="5"></textarea>
+                </div>
+
+                <div class="row">
+                    <input class="btn btn-primary" type="submit" value="{{ __('ui.save') }}">
+                </div>
+
+            </form>
+        </div>
+    </div>
 
 @endsection
-

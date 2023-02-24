@@ -25,7 +25,7 @@ class SubscriptionSeeder extends Seeder
             Subscription::create([
                 'user_id' => $admin->id,
                 'community_id' => $community->id,
-                'owner' => true,
+                'is_owner' => true,
             ]);
         }
 

@@ -21,7 +21,7 @@
         @endif
         <div class="row justify-content-between">
             <div class="col">
-                <h1>{{ $snippet->title }}</h1>
+                <h1><span class="text-white-50">s/</span>{{ $snippet->title }}</h1>
             </div>
             @auth
                 @if ($snippet->user_id === auth()->user()->id)
@@ -77,11 +77,15 @@
                     <div>
                         <span class="text-white-50 pe-1">u/</span>
                         <a class="text-decoration-none text-reset fw-semibold"
-                            href="{{ route('profiles.show', $snippet->user) }}">{{ $snippet->user->name }}</a>
+                            href="{{ route('profiles.show', $snippet->user->profile) }}">{{ $snippet->user->name }}</a>
                     </div>
                 @else
                     <span class="text-white-50 pe-1">u/</span><span>{{ $snippet->user->name }}</span>
                 @endif
+            </div>
+
+            <div>
+                {{ human_readable_date_diff($snippet->created_at) }}
             </div>
         </div>
 
@@ -194,6 +198,10 @@
                                                 <span
                                                     class="text-white-50 pe-1">u/</span><span>{{ $comment->user->name }}</span>
                                             @endif
+                                        </div>
+
+                                        <div>
+                                            {{ human_readable_date_diff($comment->created_at) }}
                                         </div>
                                     </div>
                                 </div>

@@ -52,7 +52,7 @@ if (!function_exists('roles')) :
             }
 
             if ($test instanceof \App\Models\Role) {
-                $test = $test->name;
+                $test = $test->value;
             }
 
             switch (gettype($test)) {

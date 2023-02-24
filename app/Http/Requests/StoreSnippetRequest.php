@@ -27,7 +27,8 @@ class StoreSnippetRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'nullable|string',
             'language' => 'required|string',
-            'content' => 'required|string'
+            'content' => 'required|string',
+            'community_id' => 'nullable|exists:communities,id'
         ];
     }
 }

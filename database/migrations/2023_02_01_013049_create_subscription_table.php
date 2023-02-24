@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignUlid('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignUlid('community_id')->constrained('communities', 'id')->cascadeOnDelete();
-            $table->boolean('owner')->default(false);
+            $table->boolean('is_owner')->default(false);
             $table->timestamps();
         });
     }

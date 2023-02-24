@@ -18,7 +18,7 @@ class ProfilePolicy
      */
     public function viewAny(User $user)
     {
-        roles()->check($user, 'admin');
+        return true;
     }
 
     /**
@@ -30,13 +30,13 @@ class ProfilePolicy
      */
     public function view(User $user, Profile $profile)
     {
-        if (roles()->check($user, 'admin')) return true;
+       /*  if (roles()->check($user, 'admin')) return true;
 
         $userIsModerator = roles()->check($user, 'moderator') === true;
 
         $profileIsNotAdmin = roles()->check($profile->user, 'admin') === false;
 
-        return $profile->user->public || ($userIsModerator && $profileIsNotAdmin);
+        return $profile->user->public || ($userIsModerator && $profileIsNotAdmin); */
     }
 
     /**

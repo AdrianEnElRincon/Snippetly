@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'search' => 'Buscar nuevas comunidades',
+    'discover' => 'Descubrir nuevas comunidades',
     'create' => 'Crear nueva comunidad',
     'show' => 'Ver tus comunidades',
     'create-form' => [
@@ -13,5 +13,6 @@ return [
     'messages' => [
         'subscribed' => 'Te has suscrito a la comunidad :community.',
         'unsubscribed' => 'Te has dado de baja de la comunidad :community.',
+        'created' => 'La comunidad :community se ha creado satisfactoriamente.'
     ],
 ];
