@@ -7,10 +7,12 @@
     <title>@yield('title', __('ui.admin'))</title>
     @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/admin.css'])
     <script type="module" src="{{ Vite::asset('resources/js/loader.js') }}"></script>
+    @stack('styles')
 </head>
-<body>
+<body data-bs-theme="light">
     @include('components.admin-loader')
     @include('components.admin-navbar')
     @yield('content')
+    @stack('scripts')
 </body>
 </html>

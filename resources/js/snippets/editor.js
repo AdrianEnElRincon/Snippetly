@@ -46,7 +46,7 @@ self.MonacoEnvironment = {
 
 var monaco_editor = monaco.editor.create(document.getElementById('editor'), {
     value: $('#editor').data('old-content'),
-    language: languageSelect.val().toLowerCase(),
+    language: languageSelect.val() ? languageSelect.val().toLowerCase() : 'plaintext',
     theme: 'vs-dark',
     lineNumbers: 'off',
     scrollBeyondLastLine: false

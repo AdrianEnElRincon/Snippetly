@@ -20,7 +20,7 @@
             </div>
         @endif
         <div class="row justify-content-between">
-            <div class="col">
+            <div class="col text-white">
                 <h1><span class="text-white-50">s/</span>{{ $snippet->title }}</h1>
             </div>
             @auth
@@ -44,14 +44,14 @@
                 @endif
             @endauth
         </div>
-        <p>{{ $snippet->description }}</p>
+        <p class="text-white text-opacity-75">{{ $snippet->description }}</p>
 
 
         <div class="my-5">
             <pre><code class="language-{{ $snippet->lang->name }}">{{ $snippet->content }}</code></pre>
         </div>
 
-        <div class="hstack gap-2 mb-5">
+        <div class="hstack gap-2 mb-5 text-white text-opacity-75">
             <div>
                 <span>{{ $snippet->likes }}</span>
                 @auth
@@ -91,12 +91,12 @@
 
         <div id="comment-section"></div>
 
-        <h5>{{ __('ui.comments') }}</h5>
+        <h5 class="text-white">{{ __('ui.comments') }}</h5>
 
-        <hr class="hr">
+        <hr class="hr text-white">
 
         @auth
-            <div class="row">
+            <div class="row text-white text-opacity-75">
                 <div class="col">
                     <form id="form-store-comment" action="{{ route('comments.store') }}" method="post">
                         @csrf
@@ -106,7 +106,7 @@
                                 <label class="form-label" for="form-store-comment-content">
                                     {{ __('ui.make-comment') }}
                                 </label>
-                                <textarea class="form-control p-3" id="form-store-comment-content" name="content" rows="4"></textarea>
+                                <textarea class="form-control p-3 text-white text-bg-dark" id="form-store-comment-content" name="content" rows="4"></textarea>
                                 <div class="mt-3">
                                     <input class="btn btn-success" type="submit"
                                         value="{{ __('ui.save') }}">
@@ -118,7 +118,7 @@
             </div>
         @else
             <div class="card">
-                <h5 class="card-header">{{ __('comments.register-to-post.header') }}</h5>
+                <h5 class="card-header text-white text-bg-dark">{{ __('comments.register-to-post.header') }}</h5>
                 <div class="card-body">
                     <h3>{{ __('comments.register-to-post.title') }}</h3>
                     <p class="card-text">{{ __('comments.register-to-post.description') }}</p>
@@ -164,7 +164,7 @@
 
                                     <p class="card-text">{{ $comment->content }}</p>
 
-                                    <div class="card-footer hstack gap-2">
+                                    <div class="card-text hstack gap-2">
                                         <div>
                                             <span>{{ $comment->likes }}</span>
                                             @auth

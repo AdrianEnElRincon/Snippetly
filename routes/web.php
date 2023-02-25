@@ -90,5 +90,8 @@ Route::get('set-locale/{locale}', function ($locale) {
  */
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdministrationController::class, 'dashboard'])->name('dashboard');
-    Route::get('/database', [AdministrationController::class, 'createQuery'])->name('database');
+    Route::get('/users', [AdministrationController::class, 'users'])->name('users');
+    Route::get('/snippets', [AdministrationController::class, 'snippets'])->name('snippets');
+    Route::get('/communities', [AdministrationController::class, 'communities'])->name('communities');
+    Route::get('/comments', [AdministrationController::class, 'comments'])->name('comments');
 });

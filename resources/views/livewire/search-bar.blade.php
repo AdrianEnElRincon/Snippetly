@@ -9,7 +9,7 @@
 <form class="z-2 col-8 position-relative translate-middle-x start-50" id="search-bar" action="">
     <div class="row">
         <div class="col input-group p-0">
-            <input class="form-control text-white" wire:model="search" type="text" name="searchtext"
+            <input class="form-control text-white text-bg-dark" wire:model="search" type="text" name="searchtext"
                 autocomplete="off" placeholder="{{ __('ui.searchbar') }}">
             <input class="btn btn-outline-secondary" type="submit" value="{{ __('ui.search') }}">
         </div>

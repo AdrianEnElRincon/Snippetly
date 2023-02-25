@@ -25,7 +25,7 @@
         data-bs-target="#sidebarMenu">
         <span class="bi bi-layout-sidebar"></span>
     </button>
-    <div class="offcanvas offcanvas-start show text-bg-light" id="sidebarMenu" data-bs-scroll="true" tabindex="-1"
+    <div class="offcanvas offcanvas-start text-bg-light" id="sidebarMenu" data-bs-scroll="true" tabindex="-1"
         aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title text-center" id="sidebarMenuLabel">{{ __('ui.menu') }}</h5>
@@ -35,33 +35,27 @@
         <div class="offcanvas-body">
             <ul class="nav flex-column gap-3">
                 <li class="d-grid">
-                    <a class="btn btn-outline-primary" href="#">
+                    <a class="btn btn-outline-primary" href="{{ route('admin.snippets') }}">
                         <span class="bi bi-code-slash"></span>
                         <span>{{ __('admin.snippets') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-outline-primary" href="#">
+                    <a class="btn btn-outline-primary" href="{{ route('admin.comments') }}">
                         <span class="bi bi-chat-fill"></span>
                         <span>{{ __('admin.comments') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-outline-primary" href="#">
+                    <a class="btn btn-outline-primary" href="{{ route('admin.communities') }}">
                         <span class="bi-people-fill"></span>
                         <span>{{ __('admin.communities') }}</span>
                     </a>
                 </li>
                 <li class="d-grid">
-                    <a class="btn btn-outline-primary" href="#">
+                    <a class="btn btn-outline-primary" href="{{ route('admin.users') }}">
                         <span class="bi bi-person-fill"></span>
                         <span>{{ __('admin.users') }}</span>
-                    </a>
-                </li>
-                <li class="d-grid">
-                    <a class="btn btn-outline-primary" href="{{ route('admin.database') }}">
-                        <span class="bi bi-database"></span>
-                        <span>{{ __('admin.database') }}</span>
                     </a>
                 </li>
             </ul>

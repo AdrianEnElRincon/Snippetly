@@ -22,7 +22,7 @@
                         placeholder="{{ __('snippets.create-form.title') }}">
                     <select class="form-select border-0 col" id="language-select"
                         aria-label="Default select example" name="language">
-                        <option selected disabled hidden>{{ __('snippets.create-form.select-lang') }}
+                        <option selected disabled hidden value="plaintext">{{ __('snippets.create-form.select-lang') }}
                         </option>
                         @foreach ($languages as $language)
                             <option value="{{ $language->name }}">{{ $language->value }}</option>
