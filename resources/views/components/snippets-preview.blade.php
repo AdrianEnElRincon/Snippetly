@@ -1,7 +1,4 @@
-@props([
-    'snippets',
-    'styles'
-])
+@props(['snippets', 'styles'])
 
 @push('styles')
     <link rel="stylesheet" href="{{ hljs()->asset($styles ?? auth()->user()->profile->style) }}">
@@ -33,7 +30,8 @@
                         </div>
                     </div>
                     <div class="card-body overflow-hidden user-select-none" style="height: 20rem">
-                        <a href="{{ route('snippets.show', $snippet) }}" style="text-decoration: none; color: darkgrey">
+                        <a href="{{ route('snippets.show', $snippet) }}"
+                            style="text-decoration: none; color: darkgrey">
                             <pre><code class="languague-{{ strtolower($snippet->lang->name) }} overflow-hidden">{{ $snippet->content }}</code></pre>
                         </a>
                     </div>

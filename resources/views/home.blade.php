@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="{{ Vite::asset('resources/css/home.css') }}">
 @endpush
 
-
-@push('scripts')
-    <script type="module" src="{{ Vite::asset('resources/js/home.js') }}"></script>
-@endpush
-
 @section('content')
 
 @guest
