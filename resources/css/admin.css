@@ -1,0 +1,77 @@
+:root {
+    --bs-body-bg: gainsboro;
+    --bs-body-color: black;
+}
+
+body {
+    background-color: gainsboro;
+}
+
+#toggle-sidebar-menu {
+    position: fixed;
+    z-index: 100;
+}
+
+@media (width >=570px) {
+    #toggle-sidebar-menu {
+        left: 1rem;
+        top: 50%;
+    }
+}
+
+@media (max-width: 570px) {
+    #toggle-sidebar-menu {
+        left: 1rem;
+        bottom: 1rem;
+    }
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    background-color: inherit;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 2s;
+    pointer-events: none;
+}
+
+.loader svg {
+    animation: loader 10s infinite;
+    transition: opacity 2s;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(360deg);
+    }
+
+    35% {
+        transform: rotate(-270deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    60% {
+        transform: rotate(0deg);
+    }
+
+    80% {
+        transform: rotate(360deg);
+    }
+
+    90% {
+        transform: rotate(-180deg);
+    }
+}
