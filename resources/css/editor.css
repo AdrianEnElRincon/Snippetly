@@ -1,3 +1,5 @@
+@import '/public/monaco/min/vs/editor/editor.main.css';
+
 #editor {
     min-height: 35rem;
 }

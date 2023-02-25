@@ -12,7 +12,6 @@
 @endpush
 
 @section('content')
-    {{ $errors }}
     <div class="container my-5 rounded">
         <form class="form" action="{{ route('snippets.store') }}" method="post">
             @csrf
