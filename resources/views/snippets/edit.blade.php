@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('snippets.create'))
+@section('title', __('snippets.edit'))
 
 @push('scripts')
     <script type="module" src="{{ Vite::asset('resources/js/snippets/editor.js') }}"></script>
