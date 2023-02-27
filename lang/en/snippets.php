@@ -23,4 +23,13 @@ return [
         'created' => 'Successfully created the snippet :snippet.',
         'updated' => 'Successfully updated the snippet :snippet.',
     ],
+    'create-card' => [
+        'title' => 'Create a new Snippet',
+        'description' => 'Use our snippet editor to create snippets on your favorite programming language'
+    ],
+    'validation' => [
+        'required-title' => ['attribute' => 'title'],
+        'required-title' => ['attribute' => 'language'],
+        'required-content' => 'The Snippet content cannot be empty.'
+    ]
 ];

@@ -11,7 +11,8 @@ return [
     'create-form' => [
         'title' => 'Título',
         'description' => 'Descripción',
-        'select-lang' => 'Selecciona el lenguaje de la Snippet'
+        'select-lang' => 'Selecciona el lenguaje de la Snippet',
+        'no-community' => 'No publicar a una comunidad'
     ],
     'editor' => 'Editor de Snippets',
     'edit' => 'Editar',
@@ -21,4 +22,13 @@ return [
         'created' => 'Se ha creado correctamente la snippet :snippet.',
         'updated' => 'Se ha actualizado correctamente la snippet :snippet.',
     ],
+    'create-card' => [
+        'title' => 'Crea una nueva Snippet!',
+        'description' => 'Usa nuestro editor para crear nuevas snippets en tu lenguaje de programación favorito.'
+    ],
+    'validation' => [
+        'required-title' => ['attribute' => 'título'],
+        'required-language' => ['attribute' => 'lenguaje'],
+        'required-content' => 'El contenido de la Snippet no puede estar vacío.'
+    ]
 ];

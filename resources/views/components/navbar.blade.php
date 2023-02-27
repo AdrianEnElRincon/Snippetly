@@ -6,7 +6,7 @@
             </a>
         </div>
 
-        <div class="col">
+        <div class="col search-bar">
             <livewire:search-bar />
         </div>
 
