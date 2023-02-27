@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col input-group p-0">
             <input class="form-control text-white text-bg-dark" wire:model="search" type="text" name="searchtext"
-                autocomplete="off" placeholder="{{ __('ui.searchbar') }}">
+                autocomplete="off" placeholder="@auth {{ __('ui.searchbar') }} @else {{ __('ui.searchbar-guest') }} @endauth">
             <input class="btn btn-outline-secondary" type="submit" value="{{ __('ui.search') }}">
         </div>
     </div>

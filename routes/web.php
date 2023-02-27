@@ -5,6 +5,10 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnippetController;
+use App\Mail\VerifyEmail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    if(Auth::check() && Auth::user()->email_verified_at == null) {
+        return view('auth.verify');
+    }
+
     return view('home');
 })->name('home');
 
@@ -37,7 +46,7 @@ Route::get('/snippets/{snippet}/like', [SnippetController::class, 'like'])->name
 
 Route::get('/snippets/{snippet}/dislike', [SnippetController::class, 'dislike'])->name('snippets.dislike');
 
-Route::get('/snippets/discover', [SnippetController::class, 'discover'])->name('snippets.discover');
+Route::get('/discover/snippets', [SnippetController::class, 'discover'])->name('snippets.discover');
 
 /**
  *
@@ -46,7 +55,7 @@ Route::get('/snippets/discover', [SnippetController::class, 'discover'])->name('
  */
 Route::resource('communities', CommunityController::class);
 
-Route::get('/communities/discover', [CommunityController::class, 'discover'])->name('communities.discover');
+Route::get('/discover/communities', [CommunityController::class, 'discover'])->name('communities.discover');
 
 Route::get('/communities/{community}/subscribe', [CommunityController::class, 'subscribe'])->name('communities.subscribe');
 
@@ -95,3 +104,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/communities', [AdministrationController::class, 'communities'])->name('communities');
     Route::get('/comments', [AdministrationController::class, 'comments'])->name('comments');
 });
+
+/**
+ *
+ * Email verification
+ *
+ */
+Route::get('/account/verify', function (Request $request) {
+    return view('auth.verify');
+})->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect()->route('home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.resend');

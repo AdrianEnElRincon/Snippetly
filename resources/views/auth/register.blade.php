@@ -4,7 +4,7 @@
     <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card bg-transparent">
                     <div class="card-header">{{ __('ui.register') }}</div>
 
                     <div class="card-body">

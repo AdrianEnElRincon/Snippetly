@@ -13,6 +13,7 @@ return [
     'confirm-password' => 'Confirmar Contraseña',
     'search' => 'Buscar',
     'searchbar' => 'Buscar snippets, comunidades, usuarios ...',
+    'searchbar-guest' => 'Buscar snippets ...',
     'views' => 'visualizaciones',
     'likes' => 'Gusta',
     'dislikes' => 'Disgusta',
@@ -29,5 +30,7 @@ return [
     'user' => 'Usuario',
     'controversial' => 'Polémico',
     'recent' => 'Mas Reciente',
-    'no-results' => 'No Se Encuentran Resultados...'
+    'no-results' => 'No Se Encuentran Resultados...',
+    'register' => 'Regístrate',
+    
 ];

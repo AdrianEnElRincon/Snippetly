@@ -7,13 +7,14 @@ use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
 use App\Models\Snippet;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\DB;
 
 class CommunityController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -108,7 +109,9 @@ class CommunityController extends Controller
      */
     public function destroy(Community $community)
     {
-        //
+        $community->delete();
+
+        return redirect()->back()->with('success');
     }
 
     public function subscribe(Community $community)
@@ -126,5 +129,12 @@ class CommunityController extends Controller
         Subscription::where('user_id', '=', auth()->user()->id)->where('community_id', '=', $community->id)->delete();
 
         return redirect()->back()->with('success', __('communities.messages.unsubscribed', ['community' => $community->name]));
+    }
+
+    public function discover()
+    {
+        $communities = Community::select()->whereNotIn('id', auth()->user()->communities->map(fn ($community) => $community->id))->paginate(30);
+
+        return view('communities.discover', compact('communities'));
     }
 }

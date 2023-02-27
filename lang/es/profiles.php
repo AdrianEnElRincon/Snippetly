@@ -6,4 +6,8 @@ return [
     'show' => 'Ver perfil',
     'member-since' => 'Miembro desde el :day de :month, :year',
     'style' => 'Estilos preferidos',
+    'edit-card' => [
+        'title' => 'Edita tu perfil',
+        'description' => 'Cambia el estilo de tu presencia en la aplicación.'
+    ]
 ];

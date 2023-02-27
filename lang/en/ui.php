@@ -13,6 +13,7 @@ return [
     'confirm-password' => 'Confirm Password',
     'search' => 'Search',
     'searchbar' => 'Search snippets, communities, users ...',
+    'searchbar-guest' => 'Search snippets ...',
     'views' => 'views',
     'likes' => 'Likes',
     'dislikes' => 'Dislikes',
@@ -30,4 +31,6 @@ return [
     'recent' => 'Most Recent',
     'controversial' => 'Controversial',
     'no-results' => 'No Search Results Matching Our Records ...',
+    'register' => 'Register',
+    
 ];

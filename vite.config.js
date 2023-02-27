@@ -17,7 +17,8 @@ export default defineConfig({
                 'resources/js/loader.js',
                 'resources/js/snippets/show.js',
                 'resources/js/snippets/editor.js',
-                'resources/css/admin.css'
+                'resources/css/admin.css',
+                'resources/js/tooltips.js'
             ],
             refresh: true,
         }),

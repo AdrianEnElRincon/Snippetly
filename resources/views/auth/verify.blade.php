@@ -1,9 +1,14 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
@@ -16,7 +21,8 @@
 
                         {{ __('Before proceeding, please check your email for a verification link.') }}
                         {{ __('If you did not receive the email') }},
-                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        <form class="d-inline" method="POST"
+                            action="{{ route('verification.resend') }}">
                             @csrf
                             <button class="btn btn-link p-0 m-0 align-baseline"
                                 type="submit">{{ __('click here to request another') }}</button>.

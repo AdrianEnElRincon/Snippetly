@@ -92,3 +92,18 @@ body {
         transform: rotate(-180deg);
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .search-bar {
+        visibility: hidden;
+    }
+
+    .home-shortcuts {
+        display: none;
+    }
+}
+
+.validation-tooltip {
+    --bs-tooltip-bg: var(--bs-danger);
+    --bs-tooltip-color: white;
+}

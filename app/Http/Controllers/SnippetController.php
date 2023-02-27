@@ -6,14 +6,14 @@ use App\Enums\Languages;
 use App\Models\Snippet;
 use App\Http\Requests\StoreSnippetRequest;
 use App\Http\Requests\UpdateSnippetRequest;
-use App\Models\Comment;
 use App\Models\Language;
+use Illuminate\Support\Facades\DB;
 
 class SnippetController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware(['auth', 'verified'])->except('show');
     }
 
     /**
@@ -57,7 +57,9 @@ class SnippetController extends Controller
             'lang_id' => Language::where('name', '=', $data['language'])->first()->id,
             'content' => $data['content'],
             'user_id' => auth()->user()->id,
-            'community_id' => $data['community_id']
+            'community_id' => $data['community_id'],
+            'likes' => 0,
+            'dislikes' => 0,
         ]);
 
         return redirect()->to(route('snippets.show', $snippet))->with('success', __('snippets.messages.created', ['snippet' => $snippet->title]));
@@ -117,8 +119,10 @@ class SnippetController extends Controller
 
         $snippet->title = $data['title'];
         $snippet->description = $data['description'];
-        $snippet->lang = Language::where('name', '=', $data['language'])->get();
+        $snippet->lang_id = (Language::where('name', '=', $data['language'])->first())->id;
         $snippet->content = $data['content'];
+
+        $snippet->save();
 
         return redirect()->to(route('snippets.show', $snippet))->with('success', __('snippets.messages.updated', ['snippet' => $snippet->title]));
     }
@@ -164,5 +168,17 @@ class SnippetController extends Controller
         $snippet->save();
 
         return redirect()->back();
+    }
+
+    /**
+     * Show Snippets not linked to the user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function discover()
+    {
+        $snippets = Snippet::select()->where('user_id', '!=', auth()->user()->id)->whereNotIn('community_id', auth()->user()->communities->map(fn ($community) => $community->id))->orWhere('community_id', '=', null)->paginate(30);
+        
+        return view('snippets.discover', compact('snippets'));
     }
 }

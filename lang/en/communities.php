@@ -15,4 +15,8 @@ return [
         'unsubscribed' => 'You have unsubscribed from the community :community.',
         'created' => 'Community :community has been created successfully.'
     ],
+    'create-card' => [
+        'title' => 'Create a new Community',
+        'description' => 'Share snippets with like minded people in you own community.'
+    ]
 ];
